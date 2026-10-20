@@ -1,0 +1,142 @@
+id: math-ratio-01
+domain: math
+title: "Lemonade lab: scaling and comparing ratios"
+prompt: >-
+  Recipe A mixes 2 cups of concentrate with 3 cups of water. Recipe B mixes
+  3 cups of concentrate with 5 cups of water. Use your cards, discuss with your
+  group and solve the three steps together. Explain how you know.
+steps:
+  - id: s1
+    title: "Scale it up"
+    instruction: "The class wants Recipe A but with 15 cups of water. How much concentrate do you need so it tastes the same?"
+  - id: s2
+    title: "Part of the whole"
+    instruction: "What fraction of the Recipe A mixture is concentrate?"
+  - id: s3
+    title: "Which is stronger?"
+    instruction: "Which recipe tastes more lemony, A or B? Justify."
+kcs:
+  - id: kc_scale
+    name: "Equivalent ratios scale multiplicatively"
+    keyphrases: ["10 cups", "times 5", "x5", "multiply both", "same number"]
+    correct_claims:
+      - "15 is 3 times 5 so we need 2 times 5 = 10 cups concentrate"
+      - "water went x5 so concentrate goes x5 too, 10 cups"
+  - id: kc_partwhole
+    name: "Distinguish part-to-part from part-to-whole"
+    keyphrases: ["2/5", "2 out of 5", "whole is 5", "5 parts", "part over", "get the whole"]
+    correct_claims:
+      - "2 to 3 is part to part, the whole is 5 so its 2/5 concentrate"
+      - "its 2 out of 5 cups total so 2/5"
+  - id: kc_compare
+    name: "Compare ratios via a common basis (unit rate / fraction)"
+    keyphrases: ["0.4", "0.375", "per cup", "common basis", "same basis"]
+    correct_claims:
+      - "A is 2/5 = 0.4 and B is 3/8 = 0.375 so A is stronger"
+      - "per cup of water A has 0.67 concentrate and B 0.6, A is more lemony"
+facts:
+  - id: f_multiply
+    kc: kc_scale
+    keyphrases: ["multiply both", "times both", "same number"]
+    text: "To keep the same taste, both quantities must be multiplied by the same number."
+    chat: ["my card says multiply both by the same number to keep the taste", "you have to times both parts by the same thing"]
+    ask: "do we add the same to both or what?"
+  - id: f_table
+    kc: kc_scale
+    keyphrases: ["10:15", "8:12", "6:9", "4:6"]
+    text: "A ratio table for 2:3 continues 4:6, 6:9, 8:12, 10:15."
+    chat: ["card has a table: 2:3, 4:6, 6:9, 8:12, 10:15", "the table goes 4:6 then 6:9 and so on"]
+    ask: "how do you continue a ratio?"
+  - id: f_whole
+    kc: kc_partwhole
+    keyphrases: ["2+3", "2 + 3", "5 parts", "whole is 5", "get the whole"]
+    text: "In a 2:3 mix the whole is 2 + 3 = 5 parts."
+    chat: ["the whole thing is 2+3 = 5 parts", "card says add the parts to get the whole, 5"]
+    ask: "what counts as the whole mix?"
+  - id: f_fraction
+    kc: kc_partwhole
+    keyphrases: ["part over", "over the total", "divide the part"]
+    text: "A part-to-whole fraction puts the part over the total, e.g. 2/5."
+    chat: ["fraction is part over total like 2/5", "for a fraction you divide the part by the total"]
+    ask: "how do you turn a ratio into a fraction?"
+  - id: f_common
+    kc: kc_compare
+    keyphrases: ["per cup", "same basis", "common basis"]
+    text: "To compare two mixes, convert each to concentrate per total cup (or per cup of water)."
+    chat: ["to compare you do concentrate per cup for both", "card says put both on the same basis, like per cup"]
+    ask: "how do we even compare them?"
+  - id: f_decimal
+    kc: kc_compare
+    keyphrases: ["0.375", "0.40"]
+    text: "2/5 = 0.40 and 3/8 = 0.375."
+    chat: ["2/5 is 0.4 and 3/8 is 0.375", "it says 3/8 is 0.375"]
+    ask: "what is 3/8 as a decimal?"
+jigsaw:
+  A: [f_multiply, f_common]
+  B: [f_whole, f_decimal]
+  C: [f_table, f_fraction]
+refutes:
+  # fact id -> misconception ids it contradicts (realism fix 3: group generation never gives a student a
+  # misconception refuted by their own card, and every assigned one is refutable by another member's card)
+  f_multiply: [m_additive]
+  f_table: [m_additive]
+  f_whole: [m_partpart_fraction]
+  f_fraction: [m_partpart_fraction]
+  f_common: [m_bigger_stronger]
+  f_decimal: [m_bigger_stronger]
+gold:
+  # key_ideas (rule 6): see sci-enzyme-01.yaml
+  - step: s1
+    kcs: [kc_scale]
+    answer: "10 cups of concentrate."
+    key_ideas:
+      - {id: s1_multiply_both, kc: kc_scale, facts: [f_multiply, f_table], claims: [0, 1]}
+  - step: s2
+    kcs: [kc_partwhole]
+    answer: "2/5"
+    key_ideas:
+      - {id: s2_whole_is_5, kc: kc_partwhole, facts: [f_whole], claims: [0, 1]}
+      - {id: s2_part_over_whole, kc: kc_partwhole, facts: [f_fraction], claims: [0, 1]}
+  - step: s3
+    kcs: [kc_compare]
+    answer: "A (0.40 > 0.375)."
+    key_ideas:
+      - {id: s3_common_basis, kc: kc_compare, facts: [f_common], claims: [0, 1]}
+      - {id: s3_values_compared, kc: kc_compare, facts: [f_decimal], claims: [0, 1]}
+misconceptions:
+  - id: m_additive
+    kc: kc_scale
+    trigger: s1
+    wrong_belief: "Adding the same amount to both parts keeps the ratio the same."
+    wrong_answer_template:
+      - "water went up by 12 so add 12 to the concentrate, 14 cups"
+      - "just add the same amount to both, 3+12 so 2+12"
+    flip_by: [counterexample, evidence_from_material, press_for_reasoning, peer_explanation]
+    counterexample: ["but 1:2 plus 10 is 11:12 and thats basically half and half, not the same taste"]
+    keyphrases: ["add 12", "add the same", "14 cups", "2+12", "adding the same"]
+    refuting_claims: [0, 1]
+    because: ["cause if you put 12 more water you need 12 more concentrate to keep it even", "cause adding the same to both keeps the difference the same"]
+  - id: m_partpart_fraction
+    kc: kc_partwhole
+    trigger: s2
+    wrong_belief: "The ratio 2:3 means the mix is 2/3 concentrate."
+    wrong_answer_template:
+      - "its 2/3 concentrate obviously"
+      - "2 to 3 means 2/3"
+    flip_by: [evidence_from_material, press_for_reasoning, peer_explanation]
+    counterexample: ["if its 2/3 concentrate then water would be 1/3 but there is more water than concentrate"]
+    keyphrases: ["2/3 concentrate", "means 2/3", "its 2/3", "so 2/3"]
+    refuting_claims: [0, 1]
+    because: ["cause its 2 concentrate and 3 water so 2/3 duh", "cause the ratio 2:3 is the fraction 2/3"]
+  - id: m_bigger_stronger
+    kc: kc_compare
+    trigger: s3
+    wrong_belief: "The recipe with more cups of concentrate is stronger, regardless of water."
+    wrong_answer_template:
+      - "B has 3 cups of concentrate so its stronger"
+      - "B is stronger it has more lemon"
+    flip_by: [counterexample, evidence_from_material, press_for_reasoning, peer_explanation]
+    counterexample: ["then 3 cups concentrate in 100 cups water would be strong lol"]
+    keyphrases: ["b is stronger", "b has 3 cups", "has more lemon", "more concentrate is stronger"]
+    refuting_claims: [0, 1]
+    because: ["cause 3 cups is more than 2 so theres more lemon", "cause more concentrate is stronger, water doesnt matter"]

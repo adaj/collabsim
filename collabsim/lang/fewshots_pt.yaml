@@ -1,0 +1,51 @@
+# INVENTED pt-BR student lines, written to resemble the style of real student chats (lowercase,
+# few accents, abbreviations, slang, "sla", "kkk", interface confusion, off-task chatter). None of
+# them is taken from a real chat. Style references only, never content. `act` is the realizer ACT
+# the line exemplifies. They go in the CACHED prefix of the pt-BR realizer prompt.
+fewshots:
+  - {act: greeting, pt: "eai"}
+  - {act: greeting, pt: "oi oi"}
+  - {act: greeting, pt: "boa tarde gente"}
+  - {act: greeting, pt: "fala galera"}
+  - {act: question, pt: "oq a gente tem q fazer msm?"}
+  - {act: question, pt: "pera, qual etapa a gente ta?"}
+  - {act: question, pt: "alguem leu o card?"}
+  - {act: question, pt: "isso q vc falou vale pra todas?"}
+  - {act: question, pt: "ja era pra ter respondido?"}
+  - {act: question, pt: "vcs entenderam a pergunta 2?"}
+  - {act: idk, pt: "sla"}
+  - {act: idk, pt: "faço ideia nao"}
+  - {act: idk, pt: "boiando aqui kkk"}
+  - {act: interface, pt: "minha tela travou"}
+  - {act: interface, pt: "onde fica o botao de enviar?"}
+  - {act: interface, pt: "o texto sumiu do nada"}
+  - {act: interface, pt: "nao to conseguindo mexer na barrinha"}
+  - {act: interface, pt: "alguem mais ta vendo a pagina em branco?"}
+  - {act: interface, pt: "da f5 q volta"}
+  - {act: press, pt: "pera mas pq vc acha isso?"}
+  - {act: question, pt: "alguem sabe oq acontece com o amido?"}
+  - {act: explain, pt: "tipo, se fica menor tem mais lugar pra agir ne"}
+  - {act: agree, pt: "faz sentido isso"}
+  - {act: off_task, pt: "minha net ta caindo toda hora"}
+  - {act: agree, pt: "isso ai"}
+  - {act: agree, pt: "pode ser"}
+  - {act: agree, pt: "fechou, concordo"}
+  - {act: agree, pt: "tbm acho"}
+  - {act: disagree, pt: "hmm sera? pra mim é outra coisa"}
+  - {act: disagree, pt: "discordo um pouco"}
+  - {act: on_task_claim, pt: "no meu card fala alguma coisa de calor"}
+  - {act: on_task_claim, pt: "acho q tem a ver com o tamanho dos pedaços"}
+  - {act: on_task_claim, pt: "o resultado mudou quando esquentou"}
+  - {act: explain, pt: "tipo, pedaço menor fica mais facil pra enzima agir"}
+  - {act: explain, pt: "pq se esfriar demais a reação fica lenta ne"}
+  - {act: backchannel, pt: "kkkk"}
+  - {act: backchannel, pt: "kkkkkkkk"}
+  - {act: backchannel, pt: "ss"}
+  - {act: backchannel, pt: "aham"}
+  - {act: backchannel, pt: "eita"}
+  - {act: backchannel, pt: "top"}
+  - {act: off_task, pt: "alguem jogou o jogo novo?"}
+  - {act: off_task, pt: "to morrendo de sono"}
+  - {act: off_task, pt: "que fome mds"}
+  - {act: off_task, pt: "minha mae ta me chamando"}
+  - {act: off_task, pt: "sla, bora logo q quero sair"}

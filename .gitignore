@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+# secrets: never commit API keys
+.env
+*.env
+# run outputs and the on-disk LLM response cache
+results/
+.cache/
+.llm_cache/
+# private pilot study data: never commit (point COLLABSIM_PILOT_TSV at a local copy)
+*.tsv
+*_private/
+trysim/

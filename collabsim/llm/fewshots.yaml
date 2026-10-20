@@ -1,0 +1,36 @@
+# 30 INVENTED English few-shots, written to resemble the style of real student chats: lowercase,
+# missing punctuation, slang, laughter ("lol"/"hahaha"), interface confusion, off-task chatter.
+# None of them is taken or translated from a real chat. `act` is the realizer ACT the line
+# exemplifies. These go in the CACHED prefix of the realizer prompt; they are style references
+# only, never content.
+fewshots:
+  - {act: greeting, en: "hey"}
+  - {act: greeting, en: "sup guys"}
+  - {act: greeting, en: "hi everyone"}
+  - {act: question, en: "ok so what do we do here"}
+  - {act: question, en: "which step are we on"}
+  - {act: idk, en: "idk"}
+  - {act: idk, en: "no clue tbh"}
+  - {act: interface, en: "my screen froze"}
+  - {act: interface, en: "wheres the send button"}
+  - {act: interface, en: "my text just disappeared"}
+  - {act: interface, en: "try refreshing the page"}
+  - {act: press, en: "wait why do u think that"}
+  - {act: question, en: "does anyone know what happens to the starch"}
+  - {act: explain, en: "like if its smaller theres more space for it to work"}
+  - {act: agree, en: "ok that makes sense"}
+  - {act: agree, en: "yeah thats it"}
+  - {act: agree, en: "makes sense"}
+  - {act: agree, en: "same"}
+  - {act: disagree, en: "nah i dont think so"}
+  - {act: disagree, en: "hmm not really"}
+  - {act: on_task_claim, en: "my card says something about heat"}
+  - {act: on_task_claim, en: "i think its about the size of the pieces"}
+  - {act: on_task_claim, en: "it changed when it got warmer"}
+  - {act: on_task_claim, en: "so the color change means its done"}
+  - {act: explain, en: "like smaller pieces are easier for the enzyme to work on"}
+  - {act: explain, en: "cuz if its too cold the reaction slows down"}
+  - {act: backchannel, en: "lol"}
+  - {act: backchannel, en: "hahaha"}
+  - {act: off_task, en: "anyone play the new game"}
+  - {act: off_task, en: "im so sleepy rn"}

@@ -1,0 +1,157 @@
+{
+  "source": "aggregate realism targets from a private pilot corpus (not distributed)",
+  "groups": [
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "g5",
+    "g6",
+    "g7"
+  ],
+  "left_out": [],
+  "pooled": {
+    "n_sessions": 7,
+    "msgs_per_session_median": 75,
+    "msgs_per_session_mean": 61.42857142857143,
+    "msgs_per_student_median": 13.5,
+    "msgs_per_student_per_10min_median": 3.6546646093735653,
+    "msgs_per_student_max": 64,
+    "gini_median": 0.23780487804878048,
+    "words_median": 4.0,
+    "words_p90": 11.0,
+    "one_word_share": 0.19534883720930232,
+    "gap_median_s": 15.0,
+    "gap_p25_s": 6.5,
+    "gap_p75_s": 37.0,
+    "gap_p90_s": 81.80000000000001,
+    "gap_p95_s": 130.89999999999998,
+    "gap_p99_s": 284.9599999999991,
+    "gap_max_s": 511.0,
+    "session_minutes_median": 33.766666666666666,
+    "p_same_speaker": 0.3640661938534279,
+    "lurker_share": 0.22727272727272727,
+    "idk_share": 0.020930232558139535,
+    "backchannel_share": 0.06744186046511629,
+    "max_content_free_run_max": 2,
+    "answered_question_rate": 0.75,
+    "answered_question_n": 52,
+    "run_len_p95": 3.0,
+    "run_len_max": 7,
+    "max_run_median": 4,
+    "top_speaker_share_median": 0.5411764705882353
+  },
+  "leave_2_out_range": {
+    "msgs_per_session_median": {
+      "min": 41,
+      "max": 77,
+      "width": 36
+    },
+    "msgs_per_student_median": {
+      "min": 12,
+      "max": 19.0,
+      "width": 7.0
+    },
+    "msgs_per_student_per_10min_median": {
+      "min": 3.1597425394967815,
+      "max": 4.937202252057167,
+      "width": 1.7774597125603857
+    },
+    "gini_median": {
+      "min": 0.16450216450216448,
+      "max": 0.26666666666666683,
+      "width": 0.10216450216450235
+    },
+    "words_median": {
+      "min": 4,
+      "max": 5,
+      "width": 1
+    },
+    "one_word_share": {
+      "min": 0.16987179487179488,
+      "max": 0.2314410480349345,
+      "width": 0.06156925316313963
+    },
+    "gap_median_s": {
+      "min": 12.0,
+      "max": 22.0,
+      "width": 10.0
+    },
+    "gap_p90_s": {
+      "min": 66.80000000000001,
+      "max": 118.60000000000014,
+      "width": 51.800000000000125
+    },
+    "p_same_speaker": {
+      "min": 0.32589285714285715,
+      "max": 0.40390879478827363,
+      "width": 0.07801593764541648
+    },
+    "lurker_share": {
+      "min": 0.13333333333333333,
+      "max": 0.29411764705882354,
+      "width": 0.1607843137254902
+    },
+    "idk_share": {
+      "min": 0.013157894736842105,
+      "max": 0.029535864978902954,
+      "width": 0.01637797024206085
+    },
+    "backchannel_share": {
+      "min": 0.04602510460251046,
+      "max": 0.08955223880597014,
+      "width": 0.04352713420345968
+    },
+    "max_content_free_run_max": {
+      "min": 2,
+      "max": 2,
+      "width": 0
+    },
+    "gap_p95_s": {
+      "min": 101.7999999999999,
+      "max": 187.34999999999974,
+      "width": 85.54999999999984
+    },
+    "gap_p99_s": {
+      "min": 201.48000000000002,
+      "max": 377.77,
+      "width": 176.28999999999996
+    },
+    "gap_max_s": {
+      "min": 378.0,
+      "max": 511.0,
+      "width": 133.0
+    },
+    "session_minutes_median": {
+      "min": 32.983333333333334,
+      "max": 37.766666666666666,
+      "width": 4.783333333333331
+    },
+    "answered_question_rate": {
+      "min": 0.7142857142857143,
+      "max": 0.7777777777777778,
+      "width": 0.06349206349206349
+    },
+    "run_len_p95": {
+      "min": 3.0,
+      "max": 3.6500000000000057,
+      "width": 0.6500000000000057
+    },
+    "run_len_max": {
+      "min": 4,
+      "max": 7,
+      "width": 3
+    },
+    "max_run_median": {
+      "min": 3,
+      "max": 4,
+      "width": 1
+    },
+    "top_speaker_share_median": {
+      "min": 0.49333333333333335,
+      "max": 0.5517241379310345,
+      "width": 0.05839080459770113
+    }
+  },
+  "note": "structural calibration targets only (pt-BR pilot data, aggregates); not validation."
+}

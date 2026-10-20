@@ -1,0 +1,144 @@
+id: sci-enzyme-01
+domain: science
+title: "Digestion detectives: chewing, amylase and temperature"
+prompt: >-
+  Your group is investigating how food is broken down in the mouth. Read your
+  material card, discuss with your partners and answer the three activities
+  together. For each answer, write a hypothesis starting with "I think" and
+  set your confidence slider.
+steps:
+  - id: s1
+    title: "Chewing the food"
+    instruction: "Why do you think breaking food into small pieces is good for digestion?"
+  - id: s2
+    title: "What does saliva do?"
+    instruction: "A cracker left in your mouth for a minute starts to taste sweet. What is happening to the starch, and what causes it?"
+  - id: s3
+    title: "Hot or warm?"
+    instruction: "Predict: will amylase break down starch faster at 37 C or at 80 C? Explain and set your confidence."
+kcs:
+  - id: kc_surface
+    name: "Mechanical digestion increases surface area"
+    keyphrases: ["surface area", "more surface", "surface for"]
+    correct_claims:
+      - "chewing makes smaller pieces so there is more surface for the enzymes to work on"
+      - "small pieces have more surface area so digestion is faster"
+  - id: kc_enzyme
+    name: "Enzymes are specific catalysts that are not used up"
+    keyphrases: ["has amylase", "amylase in saliva", "amylase breaks", "maltose", "catalyst", "not used up", "isnt used up", "dont get used up", "not consumed"]
+    correct_claims:
+      - "amylase in saliva breaks starch into sugar, thats why it gets sweet"
+      - "the enzyme isnt used up, the same amylase keeps breaking more starch"
+  - id: kc_temp
+    name: "Enzyme activity has an optimum temperature; too hot denatures it"
+    keyphrases: ["works best", "body temp", "denatur", "optimum", "best temp"]
+    correct_claims:
+      - "37 is faster because amylase works best at body temperature"
+      - "at 80 the enzyme gets denatured so it basically stops working"
+facts:
+  - id: f_surface
+    kc: kc_surface
+    keyphrases: ["surface area", "more surface"]
+    text: "Cutting food into smaller pieces greatly increases the total surface area exposed to digestive juices."
+    chat: ["my card says smaller pieces = way more surface area", "card says cutting it up gives more surface for the juices"]
+    ask: "does chewing change anything besides making it easier to swallow?"
+  - id: f_rate
+    kc: kc_surface
+    keyphrases: ["only work on the outside", "act on the surface", "on the surface", "outside of the pieces"]
+    text: "Enzymes act only on the surface of food particles, so more surface means faster breakdown."
+    chat: ["it says enzymes only work on the outside of the pieces", "enzymes act on the surface, so more surface = faster"]
+    ask: "where do the enzymes actually work on the food?"
+  - id: f_amylase
+    kc: kc_enzyme
+    keyphrases: ["has amylase", "amylase breaks", "maltose"]
+    text: "Saliva contains amylase, an enzyme that breaks starch into maltose (a sugar)."
+    chat: ["saliva has amylase and it turns starch into sugar", "my card: amylase breaks starch into maltose which is a sugar"]
+    ask: "what is in saliva anyway?"
+  - id: f_reuse
+    kc: kc_enzyme
+    keyphrases: ["catalyst", "not used up", "dont get used up", "isnt used up", "not consumed", "thousands"]
+    text: "Enzymes are catalysts: they are not used up and one molecule can act on thousands of substrate molecules."
+    chat: ["enzymes dont get used up, one can do thousands", "it says the enzyme is a catalyst so its not consumed"]
+    ask: "does the enzyme get used up when it works?"
+  - id: f_optimum
+    kc: kc_temp
+    keyphrases: ["works best", "body temp", "best temp", "optimum"]
+    text: "Human amylase works fastest at about 37 C (body temperature)."
+    chat: ["amylase works best around 37 like body temp", "card says the best temp for amylase is 37"]
+    ask: "is there a best temperature for it?"
+  - id: f_denature
+    kc: kc_temp
+    keyphrases: ["denatur", "above 60", "changes its shape", "change shape"]
+    text: "Above about 60 C the shape of amylase changes (denaturation) and it stops working."
+    chat: ["above 60 it gets denatured and stops", "too hot changes its shape and it stops working"]
+    ask: "what happens to enzymes if it gets really hot?"
+jigsaw:
+  A: [f_surface, f_optimum]
+  B: [f_amylase, f_denature]
+  C: [f_rate, f_reuse]
+refutes:
+  # fact id -> misconception ids it contradicts (realism fix 3: group generation never gives a student a
+  # misconception refuted by their own card, and every assigned one is refutable by another member's card)
+  f_surface: [m_swallow_only]
+  f_rate: [m_swallow_only]
+  f_reuse: [m_enzyme_used_up]
+  f_optimum: [m_hotter_faster]
+  f_denature: [m_hotter_faster]
+gold:
+  # key_ideas (rule 6): each must be stated correctly by some student, via one of
+  # its card facts or one of the listed correct claims (indices into the KC's correct_claims)
+  - step: s1
+    kcs: [kc_surface]
+    answer: "Smaller pieces have more surface area, so enzymes can act faster."
+    key_ideas:
+      - {id: s1_surface_area, kc: kc_surface, facts: [f_surface], claims: [0, 1]}
+      - {id: s1_enzymes_on_surface, kc: kc_surface, facts: [f_rate], claims: [0]}
+  - step: s2
+    kcs: [kc_enzyme]
+    answer: "Salivary amylase breaks starch into sugar (maltose); the enzyme is not used up."
+    key_ideas:
+      - {id: s2_amylase_breaks_starch, kc: kc_enzyme, facts: [f_amylase], claims: [0]}
+      - {id: s2_not_used_up, kc: kc_enzyme, facts: [f_reuse], claims: [1]}
+  - step: s3
+    kcs: [kc_temp]
+    answer: "37 C; at 80 C amylase is denatured and stops working."
+    key_ideas:
+      - {id: s3_optimum_37, kc: kc_temp, facts: [f_optimum], claims: [0]}
+      - {id: s3_denatured_when_hot, kc: kc_temp, facts: [f_denature], claims: [1]}
+misconceptions:
+  - id: m_swallow_only
+    kc: kc_surface
+    trigger: s1
+    wrong_belief: "Chewing only serves to make food easier to swallow; it does not affect digestion."
+    wrong_answer_template:
+      - "i think its just so its easier to swallow"
+      - "chewing is only so it goes down easier"
+    flip_by: [evidence_from_material, press_for_reasoning, peer_explanation]
+    counterexample: ["but then why does granulated sugar dissolve faster than a cube?"]
+    keyphrases: ["just so its easier to swallow", "easier to swallow", "only so it goes down", "goes down easier", "does not affect digestion", "doesnt affect digestion"]
+    refuting_claims: [0, 1]
+    because: ["cause you chew just so you can swallow it, the stomach does the rest", "cause if you swallow it whole it still goes down, just harder"]
+  - id: m_enzyme_used_up
+    kc: kc_enzyme
+    trigger: s2
+    wrong_belief: "Enzymes get used up (eaten) during the reaction, like a fuel."
+    wrong_answer_template:
+      - "the enzyme gets used up turning starch into sugar"
+      - "i think the saliva is used up so it stops after a while"
+    flip_by: [evidence_from_material, counterexample, peer_explanation]
+    counterexample: ["but if it got used up the cracker would stop getting sweeter and it doesnt"]
+    keyphrases: ["used up", "gets used up", "like a fuel", "runs out", "is consumed", "get eaten"]
+    refuting_claims: [1]
+    because: ["cause the more you use it the more it runs out, like gas", "cause saliva runs out, thats why your mouth gets dry"]
+  - id: m_hotter_faster
+    kc: kc_temp
+    trigger: s3
+    wrong_belief: "Higher temperature always makes enzymes work faster."
+    wrong_answer_template:
+      - "80 is faster, hotter always speeds things up"
+      - "i think 80 because heat makes reactions faster"
+    flip_by: [counterexample, evidence_from_material, press_for_reasoning, peer_explanation]
+    counterexample: ["but if hotter is always faster then boiling saliva would be the best and it isnt"]
+    keyphrases: ["hotter always", "hotter is faster", "80 is faster", "80 is better", "80 because", "heat makes reactions faster", "heat speeds"]
+    refuting_claims: [0, 1]
+    because: ["cause everything goes faster when its hotter, like boiling water", "cause heat gives energy so it works harder"]

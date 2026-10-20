@@ -1,0 +1,142 @@
+# pt-BR version of tasks/math-ratio-01.yaml (same ids, same structure; 2026-10-18).
+# Decimals are written the Brazilian way (0,4) and keyphrases accept both "0,375" and "0.375".
+id: math-ratio-01
+language: pt-BR
+domain: math
+title: "Laboratório da limonada: ampliar e comparar razões"
+prompt: >-
+  A receita A mistura 2 copos de concentrado com 3 copos de água. A receita B
+  mistura 3 copos de concentrado com 5 copos de água. Usem os seus cards,
+  discutam no grupo e resolvam as três etapas juntos. Expliquem como vocês sabem.
+steps:
+  - id: s1
+    title: "Aumentando a receita"
+    instruction: "A turma quer a receita A, mas com 15 copos de água. Quanto concentrado precisa para ficar com o mesmo gosto?"
+  - id: s2
+    title: "Parte do todo"
+    instruction: "Que fração da mistura da receita A é concentrado?"
+  - id: s3
+    title: "Qual é mais forte?"
+    instruction: "Qual receita tem mais gosto de limão, A ou B? Justifiquem."
+kcs:
+  - id: kc_scale
+    name: "Razões equivalentes se ampliam multiplicando"
+    keyphrases: ["10 copos", "vezes 5", "x5", "multiplicar os dois", "mesmo numero"]
+    correct_claims:
+      - "15 é 3 vezes 5 entao precisa de 2 vezes 5 = 10 copos de concentrado"
+      - "a agua foi x5 entao o concentrado vai x5 tbm, 10 copos"
+  - id: kc_partwhole
+    name: "Distinguir parte-parte de parte-todo"
+    keyphrases: ["2/5", "2 de 5", "o todo é 5", "5 partes", "parte sobre", "pra achar o todo"]
+    correct_claims:
+      - "2 pra 3 é parte com parte, o todo é 5 entao é 2/5 de concentrado"
+      - "sao 2 de 5 copos no total entao 2/5"
+  - id: kc_compare
+    name: "Comparar razões numa base comum (taxa unitária / fração)"
+    keyphrases: ["0,4", "0.4", "0,375", "0.375", "por copo", "base comum", "mesma base"]
+    correct_claims:
+      - "A é 2/5 = 0,4 e B é 3/8 = 0,375 entao A é mais forte"
+      - "por copo de agua A tem 0,67 de concentrado e B 0,6, A tem mais gosto de limao"
+facts:
+  - id: f_multiply
+    kc: kc_scale
+    keyphrases: ["multiplicar os dois", "multiplica os dois", "vezes os dois", "mesmo numero"]
+    text: "Para manter o mesmo gosto, as duas quantidades têm que ser multiplicadas pelo mesmo número."
+    chat: ["meu card diz pra multiplicar os dois pelo mesmo numero pra manter o gosto", "tem que fazer vezes os dois pela mesma coisa"]
+    ask: "a gente soma o mesmo nos dois ou oq?"
+  - id: f_table
+    kc: kc_scale
+    keyphrases: ["10:15", "8:12", "6:9", "4:6"]
+    text: "Uma tabela de razões para 2:3 continua 4:6, 6:9, 8:12, 10:15."
+    chat: ["o card tem uma tabela: 2:3, 4:6, 6:9, 8:12, 10:15", "a tabela vai 4:6 depois 6:9 e assim vai"]
+    ask: "como continua uma razão?"
+  - id: f_whole
+    kc: kc_partwhole
+    keyphrases: ["2+3", "2 + 3", "5 partes", "o todo é 5", "pra achar o todo"]
+    text: "Numa mistura 2:3 o todo é 2 + 3 = 5 partes."
+    chat: ["o todo é 2+3 = 5 partes", "o card diz pra somar as partes pra achar o todo, 5"]
+    ask: "oq conta como a mistura toda?"
+  - id: f_fraction
+    kc: kc_partwhole
+    keyphrases: ["parte sobre", "sobre o total", "divide a parte"]
+    text: "Uma fração parte-todo põe a parte sobre o total, por exemplo 2/5."
+    chat: ["fração é parte sobre o total tipo 2/5", "pra fazer a fração vc divide a parte pelo total"]
+    ask: "como transforma uma razão numa fração?"
+  - id: f_common
+    kc: kc_compare
+    keyphrases: ["por copo", "mesma base", "base comum"]
+    text: "Para comparar duas misturas, transforme cada uma em concentrado por copo total (ou por copo de água)."
+    chat: ["pra comparar vc faz concentrado por copo nas duas", "o card diz pra colocar as duas na mesma base, tipo por copo"]
+    ask: "como a gente compara elas?"
+  - id: f_decimal
+    kc: kc_compare
+    keyphrases: ["0,375", "0.375", "0,40", "0.40"]
+    text: "2/5 = 0,40 e 3/8 = 0,375."
+    chat: ["2/5 é 0,4 e 3/8 é 0,375", "diz que 3/8 é 0,375"]
+    ask: "quanto é 3/8 em decimal?"
+jigsaw:
+  A: [f_multiply, f_common]
+  B: [f_whole, f_decimal]
+  C: [f_table, f_fraction]
+refutes:
+  f_multiply: [m_additive]
+  f_table: [m_additive]
+  f_whole: [m_partpart_fraction]
+  f_fraction: [m_partpart_fraction]
+  f_common: [m_bigger_stronger]
+  f_decimal: [m_bigger_stronger]
+gold:
+  - step: s1
+    kcs: [kc_scale]
+    answer: "10 copos de concentrado."
+    key_ideas:
+      - {id: s1_multiply_both, kc: kc_scale, facts: [f_multiply, f_table], claims: [0, 1]}
+  - step: s2
+    kcs: [kc_partwhole]
+    answer: "2/5"
+    key_ideas:
+      - {id: s2_whole_is_5, kc: kc_partwhole, facts: [f_whole], claims: [0, 1]}
+      - {id: s2_part_over_whole, kc: kc_partwhole, facts: [f_fraction], claims: [0, 1]}
+  - step: s3
+    kcs: [kc_compare]
+    answer: "A (0,40 > 0,375)."
+    key_ideas:
+      - {id: s3_common_basis, kc: kc_compare, facts: [f_common], claims: [0, 1]}
+      - {id: s3_values_compared, kc: kc_compare, facts: [f_decimal], claims: [0, 1]}
+misconceptions:
+  - id: m_additive
+    kc: kc_scale
+    trigger: s1
+    wrong_belief: "Somar a mesma quantidade nas duas partes mantém a razão igual."
+    wrong_answer_template:
+      - "a agua aumentou 12 entao soma 12 no concentrado, 14 copos"
+      - "é so somar o mesmo nos dois, 3+12 entao 2+12"
+    flip_by: [counterexample, evidence_from_material, press_for_reasoning, peer_explanation]
+    counterexample: ["mas 1:2 mais 10 vira 11:12 e isso é quase metade metade, nao é o mesmo gosto"]
+    keyphrases: ["soma 12", "somar o mesmo", "soma o mesmo", "14 copos", "2+12", "somar igual"]
+    refuting_claims: [0, 1]
+    because: ["pq se colocou 12 de agua tem que colocar 12 de concentrado tbm pra ficar igual", "pq somar igual nos dois mantem a diferença igual"]
+  - id: m_partpart_fraction
+    kc: kc_partwhole
+    trigger: s2
+    wrong_belief: "A razão 2:3 quer dizer que a mistura é 2/3 de concentrado."
+    wrong_answer_template:
+      - "é 2/3 de concentrado obvio"
+      - "2 pra 3 quer dizer 2/3"
+    flip_by: [evidence_from_material, press_for_reasoning, peer_explanation]
+    counterexample: ["se fosse 2/3 de concentrado a agua seria 1/3 mas tem mais agua que concentrado"]
+    keyphrases: ["2/3 de concentrado", "quer dizer 2/3", "e 2/3", "entao 2/3"]
+    refuting_claims: [0, 1]
+    because: ["pq é 2 de concentrado e 3 de agua, entao 2/3 ue", "pq a razao 2:3 é igual a fraçao 2/3"]
+  - id: m_bigger_stronger
+    kc: kc_compare
+    trigger: s3
+    wrong_belief: "A receita com mais copos de concentrado é mais forte, não importa a água."
+    wrong_answer_template:
+      - "a B tem 3 copos de concentrado entao é mais forte"
+      - "a B é mais forte tem mais limao"
+    flip_by: [counterexample, evidence_from_material, press_for_reasoning, peer_explanation]
+    counterexample: ["entao 3 copos de concentrado em 100 copos de agua ia ser forte kkk"]
+    keyphrases: ["b e mais forte", "b tem 3 copos", "mais limao", "mais concentrado mais forte"]
+    refuting_claims: [0, 1]
+    because: ["pq 3 copos é mais que 2, entao tem mais limao", "pq quanto mais concentrado mais forte, a agua nao importa"]

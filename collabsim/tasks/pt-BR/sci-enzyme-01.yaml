@@ -1,0 +1,144 @@
+# pt-BR version of tasks/sci-enzyme-01.yaml (same ids, same structure; 2026-10-18).
+# Keyphrases are matched on accent-folded text (no accents needed). The pilot activity this task is
+# modelled on ran in pt-BR, so this is the native-language variant.
+id: sci-enzyme-01
+language: pt-BR
+domain: science
+title: "Detetives da digestão: mastigação, amilase e temperatura"
+prompt: >-
+  Seu grupo está investigando como a comida é quebrada na boca. Leia o seu card
+  de material, discuta com os colegas e respondam juntos às três atividades. Para
+  cada resposta, escrevam uma hipótese começando com "Eu acho" e marquem a
+  barrinha de confiança.
+steps:
+  - id: s1
+    title: "Mastigando a comida"
+    instruction: "Por que você acha que dividir a comida em pedaços pequenos é bom para a digestão?"
+  - id: s2
+    title: "O que a saliva faz?"
+    instruction: "Um biscoito deixado na boca por um minuto começa a ficar doce. O que está acontecendo com o amido, e o que causa isso?"
+  - id: s3
+    title: "Quente ou morno?"
+    instruction: "Previsão: a amilase digere o amido mais rápido a 37 °C ou a 80 °C? Expliquem e marquem a confiança."
+kcs:
+  - id: kc_surface
+    name: "A digestão mecânica aumenta a área de superfície"
+    keyphrases: ["area de superficie", "mais superficie", "superficie pra"]
+    correct_claims:
+      - "mastigar deixa os pedaços menores, ai tem mais superficie pras enzimas agirem"
+      - "pedaço pequeno tem mais area de superficie entao a digestao é mais rapida"
+  - id: kc_enzyme
+    name: "Enzimas são catalisadores específicos que não se gastam"
+    keyphrases: ["tem amilase", "amilase na saliva", "amilase da saliva", "amilase quebra", "maltose", "catalisador", "nao se gasta", "nao e consumida", "nao gasta"]
+    correct_claims:
+      - "a amilase da saliva quebra o amido em açucar, por isso fica doce"
+      - "a enzima nao se gasta, a mesma amilase continua quebrando mais amido"
+  - id: kc_temp
+    name: "A atividade da enzima tem uma temperatura ótima; quente demais desnatura"
+    keyphrases: ["funciona melhor", "temperatura do corpo", "desnatur", "temperatura otima", "melhor temperatura"]
+    correct_claims:
+      - "37 é mais rapido pq a amilase funciona melhor na temperatura do corpo"
+      - "a 80 a enzima desnatura entao ela basicamente para de funcionar"
+facts:
+  - id: f_surface
+    kc: kc_surface
+    keyphrases: ["area de superficie", "mais superficie"]
+    text: "Cortar o alimento em pedaços menores aumenta muito a área de superfície total exposta aos sucos digestivos."
+    chat: ["meu card diz que pedaço menor = mt mais area de superficie", "o card diz que cortar em pedaços da mais superficie pros sucos"]
+    ask: "mastigar muda alguma coisa alem de ficar mais facil de engolir?"
+  - id: f_rate
+    kc: kc_surface
+    keyphrases: ["so funcionam por fora", "agem na superficie", "na superficie", "por fora dos pedaços"]
+    text: "As enzimas só agem na superfície das partículas de alimento, então mais superfície significa quebra mais rápida."
+    chat: ["diz que as enzimas so funcionam por fora dos pedaços", "as enzimas agem na superficie, entao mais superficie = mais rapido"]
+    ask: "onde as enzimas agem de verdade na comida?"
+  - id: f_amylase
+    kc: kc_enzyme
+    keyphrases: ["tem amilase", "amilase quebra", "maltose"]
+    text: "A saliva contém amilase, uma enzima que quebra o amido em maltose (um açúcar)."
+    chat: ["a saliva tem amilase e ela transforma amido em açucar", "meu card: a amilase quebra o amido em maltose que é um açucar"]
+    ask: "oq tem na saliva afinal?"
+  - id: f_reuse
+    kc: kc_enzyme
+    keyphrases: ["catalisador", "nao e consumida", "nao se gasta", "nao gasta", "nao e gasta", "milhares"]
+    text: "Enzimas são catalisadores: não são consumidas, e uma molécula pode agir em milhares de moléculas de substrato."
+    chat: ["as enzimas nao se gastam, uma faz milhares", "diz que a enzima é um catalisador entao nao é consumida"]
+    ask: "a enzima acaba quando ela trabalha?"
+  - id: f_optimum
+    kc: kc_temp
+    keyphrases: ["funciona melhor", "temperatura do corpo", "melhor temperatura", "temperatura otima"]
+    text: "A amilase humana funciona mais rápido a uns 37 °C (temperatura do corpo)."
+    chat: ["a amilase funciona melhor perto de 37 tipo temperatura do corpo", "o card diz que a melhor temperatura pra amilase é 37"]
+    ask: "tem uma temperatura que é melhor pra ela?"
+  - id: f_denature
+    kc: kc_temp
+    keyphrases: ["desnatur", "acima de 60", "muda de forma", "muda o formato"]
+    text: "Acima de uns 60 °C a forma da amilase muda (desnaturação) e ela para de funcionar."
+    chat: ["acima de 60 ela desnatura e para", "muito quente muda o formato dela e ela para de funcionar"]
+    ask: "oq acontece com as enzimas se esquentar muito?"
+jigsaw:
+  A: [f_surface, f_optimum]
+  B: [f_amylase, f_denature]
+  C: [f_rate, f_reuse]
+refutes:
+  f_surface: [m_swallow_only]
+  f_rate: [m_swallow_only]
+  f_reuse: [m_enzyme_used_up]
+  f_optimum: [m_hotter_faster]
+  f_denature: [m_hotter_faster]
+gold:
+  - step: s1
+    kcs: [kc_surface]
+    answer: "Pedaços menores têm mais área de superfície, então as enzimas agem mais rápido."
+    key_ideas:
+      - {id: s1_surface_area, kc: kc_surface, facts: [f_surface], claims: [0, 1]}
+      - {id: s1_enzymes_on_surface, kc: kc_surface, facts: [f_rate], claims: [0]}
+  - step: s2
+    kcs: [kc_enzyme]
+    answer: "A amilase da saliva quebra o amido em açúcar (maltose); a enzima não se gasta."
+    key_ideas:
+      - {id: s2_amylase_breaks_starch, kc: kc_enzyme, facts: [f_amylase], claims: [0]}
+      - {id: s2_not_used_up, kc: kc_enzyme, facts: [f_reuse], claims: [1]}
+  - step: s3
+    kcs: [kc_temp]
+    answer: "37 °C; a 80 °C a amilase desnatura e para de funcionar."
+    key_ideas:
+      - {id: s3_optimum_37, kc: kc_temp, facts: [f_optimum], claims: [0]}
+      - {id: s3_denatured_when_hot, kc: kc_temp, facts: [f_denature], claims: [1]}
+misconceptions:
+  - id: m_swallow_only
+    kc: kc_surface
+    trigger: s1
+    wrong_belief: "Mastigar só serve pra deixar a comida mais fácil de engolir; não afeta a digestão."
+    wrong_answer_template:
+      - "acho que é so pra ficar mais facil de engolir"
+      - "mastigar é so pra comida descer mais facil"
+    flip_by: [evidence_from_material, press_for_reasoning, peer_explanation]
+    counterexample: ["mas entao pq o açucar refinado dissolve mais rapido que o cubo?"]
+    keyphrases: ["so pra engolir", "so serve pra engolir", "mais facil de engolir", "facil de engolir", "descer mais facil", "nao afeta a digestao", "so pra comida descer"]
+    refuting_claims: [0, 1]
+    because: ["pq quando a gente mastiga é so pra conseguir engolir, o estomago que faz o resto", "pq se engolir inteiro passa do mesmo jeito, so é mais dificil"]
+  - id: m_enzyme_used_up
+    kc: kc_enzyme
+    trigger: s2
+    wrong_belief: "As enzimas se gastam (são consumidas) durante a reação, como um combustível."
+    wrong_answer_template:
+      - "a enzima vai se gastando quando transforma o amido em açucar"
+      - "acho que a saliva acaba entao para depois de um tempo"
+    flip_by: [evidence_from_material, counterexample, peer_explanation]
+    counterexample: ["mas se ela acabasse o biscoito ia parar de ficar mais doce e nao para"]
+    keyphrases: ["se gasta", "vai se gastando", "se gastando", "gastando", "combustivel", "e consumida", "sao consumidas", "sendo consumid", "saliva acaba", "enzima acaba", "vai acabando"]
+    refuting_claims: [1]
+    because: ["pq quanto mais usa mais gasta, tipo gasolina", "pq a saliva vai acabando, por isso a boca fica seca"]
+  - id: m_hotter_faster
+    kc: kc_temp
+    trigger: s3
+    wrong_belief: "Temperatura mais alta sempre faz a enzima trabalhar mais rápido."
+    wrong_answer_template:
+      - "80 é mais rapido, mais quente sempre acelera"
+      - "acho que 80 pq o calor deixa as reaçoes mais rapidas"
+    flip_by: [counterexample, evidence_from_material, press_for_reasoning, peer_explanation]
+    counterexample: ["mas se mais quente fosse sempre mais rapido entao saliva fervendo seria a melhor e nao é"]
+    keyphrases: ["mais quente sempre", "quanto mais quente", "mais quente mais rapido", "80 e mais rapido", "80 e melhor", "80 pq", "calor deixa", "calor acelera"]
+    refuting_claims: [0, 1]
+    because: ["pq tudo esquentando fica mais rapido, tipo agua fervendo", "pq calor da energia, entao ela trabalha mais"]
